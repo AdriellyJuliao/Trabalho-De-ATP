@@ -1,6 +1,10 @@
-﻿using System;
+using System;
+
 class TrabalhoFinal
 {
+
+    static string[,] vetorListaDosVoos = new string[1,3];//codigo = [0], distancia = [1], assentos = [2]
+    static int qtdVoo = 1;
 
     static void exibirMensagemBoasVindas()
     {
@@ -101,16 +105,99 @@ class TrabalhoFinal
     static void ListaDosVoos()
     {
         //criando um vetor para armazenar os voos cadastrados
+        
+        for (int i = 0; i < qtdVoo; i++)
+        {
+            //Console.WriteLine($"Vôos: {ListaDosVoos[i]}");        /*essa parte fica aqui ou onde vou listar?*/
+            Console.WriteLine($"Vôos: {vetorListaDosVoos[i,0]}");
+            Console.WriteLine($"Distância: {vetorListaDosVoos[i,1]}");
+            Console.WriteLine($"Assentos: {vetorListaDosVoos[i,2]}");
+        }
 
-    int[] vetorListaDosVoos = new int[]{}; // int recenbendo o codigo
 
-    int tamanhoLista = vetorListaDosVoos.Length;
-    
-    for (int i = 0; i < tamanhoLista; i++)
-    {
-        //Console.WriteLine($"Vôos: {ListaDosVoos[i]}");        /*essa parte fica aqui ou onde vou listar?*/
-        Console.WriteLine($"Vôos: {vetorListaDosVoos[i]}");
     }
+
+    static void AddVoo(string[] voo){
+        //passando as caracteristicas do voo
+
+
+        string[,] vetorListaDosVoos_aux = new string[qtdVoo+1,3];
+
+        for (int i = 0; i < qtdVoo; i++)
+        {
+
+            for (int j = 0; j < 3; j++)
+            {
+
+                vetorListaDosVoos_aux[i,j]=vetorListaDosVoos[i,j];
+                
+            }
+            
+        }
+        for (int j = 0; j < 3; j++)
+        {
+            
+            vetorListaDosVoos_aux[qtdVoo,j]=voo[j];
+            
+        }
+
+        vetorListaDosVoos = new string[qtdVoo+1,3];
+
+        qtdVoo ++;
+
+        vetorListaDosVoos = vetorListaDosVoos_aux;
+
+    }
+
+    static string[] retornaVoo(int a){
+
+        string[] retorno = new string[3];
+    //retorna linha
+
+        for (int j = 0; j < 3; j++)
+        {
+            
+            retorno[j]=vetorListaDosVoos[a,j];
+            
+        }
+
+        return retorno;
+
+    }
+
+    static void excluiVoo(int a){
+
+        string[,] vetorListaDosVoos_aux = new string[qtdVoo-1,3];
+
+        for (int i = 0; i < qtdVoo; i++)
+        {
+
+            if(i<a){
+
+                for (int j = 0; j < 3; j++)
+                {
+                    
+                    vetorListaDosVoos_aux[i,j]=vetorListaDosVoos[i,j];
+                    
+                }
+
+            }
+            else if(i>a){
+
+                for (int j = 0; j < 3; j++)
+                {
+                    
+                    vetorListaDosVoos_aux[i-1,j]=vetorListaDosVoos[i,j];
+                    
+                }
+
+            }
+            
+        }
+
+        qtdVoo--;
+
+        vetorListaDosVoos = vetorListaDosVoos_aux;
 
 
     }
@@ -147,7 +234,7 @@ class TrabalhoFinal
             default:
                 Console.Clear();
                 Console.WriteLine("Você selecionou uma opção inválida. Por favor tente novamente.\n");
-                Thread.Sleep(2500);
+                //Thread.Sleep(2500);
                 verTodosPassageiros();
             break;
         }
@@ -226,7 +313,7 @@ class TrabalhoFinal
             default:
                 Console.Clear();
                 Console.WriteLine("Você selecionou uma opção inválida. Por favor tente novamente.\n");
-                Thread.Sleep(2500);
+                //Thread.Sleep(2500);
                 verVoos();
                 break;
         }
@@ -301,14 +388,11 @@ class TrabalhoFinal
         
 
 
-        //vetorListaDosVoos.Add(CodigoVoo);
-        // ListaDosVoos.Add(DistanciaVoo);
-        //  ListaDosVoos.Add(AcentosDoVoo);
-
+        AddVoo(new string[3]{CodigoVoo,DistanciaVoo,AcentosDoVoo});
 
         Console.WriteLine($"O vôo de codigo {CodigoVoo} foi cadastrado com sucesso!");
 
-        Thread.Sleep(3000); //faz o carregamento de alguns segundos
+        //Thread.Sleep(3000); //faz o carregamento de alguns segundos
 
         Console.Clear();
         exibirOpcoesDoMenu();
@@ -332,7 +416,7 @@ class TrabalhoFinal
         //ListaDosPassageiros.Add(codigoPassageiro);
         Console.WriteLine($"O passageiro(a) {nomePassageiro} de codigo {codigoPassageiro} foi cadastrado com sucesso!");
 
-        Thread.Sleep(3500);
+       // Thread.Sleep(3500);
 
         Console.Clear();
         exibirOpcoesDoMenu();
@@ -349,7 +433,6 @@ class TrabalhoFinal
     }
 
 }
-
 
 
 
