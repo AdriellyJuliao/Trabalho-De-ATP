@@ -126,7 +126,7 @@ class TrabalhoFinal
 
         Console.WriteLine("\nDigite 1 para ver um passageiro específico.");
         Console.WriteLine("Digite 2 para ver todos os passageiros desse vôo.");
-        Console.WriteLine("Digite 0 para voltar ao menu.");
+        Console.WriteLine("Digite 0 para voltar ao menu principal.");
         
         Console.Write("\nDigite sua opção:");
         int OpcaoEscolhida = int.Parse(Console.ReadLine()!);
@@ -141,7 +141,7 @@ class TrabalhoFinal
                 Console.WriteLine("VOCE CHEGOU ATE AQUI");
                 break;
                 
-            case 3: exibirOpcoesDoMenu();
+            case 0: exibirOpcoesDoMenu();
                 break;
                 
             default:
